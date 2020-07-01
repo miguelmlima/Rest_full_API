@@ -4,6 +4,7 @@ import br.com.resfull.ExceptionResponse.ResourceNotFoundException;
 import br.com.resfull.converter.DozerConverter;
 import br.com.resfull.data.model.Person;
 import br.com.resfull.data.vo.PersonVO;
+import br.com.resfull.data.vo.v2.PersonVOV2;
 import br.com.resfull.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,11 @@ public class PersonService {
         Person entity = DozerConverter.traslatorObject(person, Person.class);
         PersonVO vo = DozerConverter.traslatorObject(repository.save(entity), PersonVO.class);
          return vo;
+    }
+    public PersonVOV2 createv2(PersonVOV2 person) {
+        Person entity = DozerConverter.traslatorObject(person, Person.class);
+        PersonVOV2 vo = DozerConverter.traslatorObject(repository.save(entity), PersonVOV2.class);
+        return vo;
     }
 
     public PersonVO update(PersonVO person) {

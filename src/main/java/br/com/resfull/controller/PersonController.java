@@ -2,6 +2,7 @@ package br.com.resfull.controller;
 
 
 import br.com.resfull.data.vo.PersonVO;
+import br.com.resfull.data.vo.v2.PersonVOV2;
 import br.com.resfull.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,11 @@ public class PersonController {
     public PersonVO create(@RequestBody PersonVO person) {
         return service.create(person);
     }
+    @PostMapping("v2")
+    public PersonVOV2 createV2(@RequestBody PersonVOV2 person) {
+        return service.createv2(person);
+    }
+
     @PutMapping
     public PersonVO update(@RequestBody PersonVO person) {
         return service.update(person);
