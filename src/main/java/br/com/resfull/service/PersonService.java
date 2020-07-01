@@ -41,8 +41,6 @@ public class PersonService {
             persons.add(person);
         }
         return persons;
-        
-        
     }
 
     private Person mockPerson(int i) {
