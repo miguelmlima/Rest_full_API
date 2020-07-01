@@ -1,6 +1,7 @@
 package br.com.resfull.controller;
 
-import br.com.resfull.model.Person;
+
+import br.com.resfull.data.vo.PersonVO;
 import br.com.resfull.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,27 +11,27 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/person")
-public class PersonController {
+@RequestMapping("/PersonVO")
+public class PersonVOController {
 
     @Autowired
     private PersonService service;
 
     @GetMapping("/{id}")
-    public Person findById(@PathVariable("id") Long id) {
+    public PersonVO findById(@PathVariable("id") Long id) {
         return service.findById(id);
     }
     @GetMapping
-    public List<Person> findAll() {
+    public List<PersonVO> findAll() {
         return service.findAll();
     }
     @PostMapping
-    public Person create(@RequestBody Person person) {
-        return service.create(person);
+    public PersonVO create(@RequestBody PersonVO PersonVO) {
+        return service.create(PersonVO);
     }
     @PutMapping
-    public Person update(@RequestBody Person person) {
-        return service.update(person);
+    public PersonVO update(@RequestBody PersonVO PersonVO) {
+        return service.update(PersonVO);
     }
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable("id") Long id) {

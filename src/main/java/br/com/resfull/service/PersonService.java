@@ -1,7 +1,8 @@
 package br.com.resfull.service;
 
 import br.com.resfull.ExceptionResponse.ResourceNotFoundException;
-import br.com.resfull.model.Person;
+import br.com.resfull.data.model.Person;
+import br.com.resfull.data.vo.PersonVO;
 import br.com.resfull.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ public class PersonService {
     PersonRepository repository;
 
     public Person create(Person person) {
+        PersonVO vo = new PersonVO();
         return repository.save(person);
     }
 

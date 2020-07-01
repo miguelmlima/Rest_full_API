@@ -1,4 +1,4 @@
-package br.com.resfull.model;
+package br.com.resfull.data.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
