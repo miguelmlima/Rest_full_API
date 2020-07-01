@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "person")
-public class Person  implements Serializable {
+public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

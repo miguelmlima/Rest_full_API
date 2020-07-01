@@ -11,8 +11,8 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/PersonVO")
-public class PersonVOController {
+@RequestMapping("/person")
+public class PersonController {
 
     @Autowired
     private PersonService service;
@@ -26,16 +26,16 @@ public class PersonVOController {
         return service.findAll();
     }
     @PostMapping
-    public PersonVO create(@RequestBody PersonVO PersonVO) {
-        return service.create(PersonVO);
+    public PersonVO create(@RequestBody PersonVO person) {
+        return service.create(person);
     }
     @PutMapping
-    public PersonVO update(@RequestBody PersonVO PersonVO) {
-        return service.update(PersonVO);
+    public PersonVO update(@RequestBody PersonVO person) {
+        return service.update(person);
     }
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable("id") Long id) {
-         service.delete(id);
-         return ResponseEntity.ok().build();
+        service.delete(id);
+        return ResponseEntity.ok().build();
     }
 }

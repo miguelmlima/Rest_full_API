@@ -1,6 +1,7 @@
 package br.com.resfull.service;
 
 import br.com.resfull.ExceptionResponse.ResourceNotFoundException;
+import br.com.resfull.converter.DozerConverter;
 import br.com.resfull.data.model.Person;
 import br.com.resfull.data.vo.PersonVO;
 import br.com.resfull.repository.PersonRepository;
@@ -15,12 +16,13 @@ public class PersonService {
     @Autowired
     PersonRepository repository;
 
-    public Person create(Person person) {
-        PersonVO vo = new PersonVO();
-        return repository.save(person);
+    public PersonVO create(PersonVO person) {
+        Person entity = DozerConverter.traslatorObject(person, Person.class);
+        PersonVO vo = DozerConverter.traslatorObject(repository.save(entity), PersonVO.class);
+         return vo;
     }
 
-    public Person update(Person person) {
+    public PersonVO update(PersonVO person) {
         Person entity = repository.findById(person.getId())
                 .orElseThrow(() ->
                         new ResourceNotFoundException("No records found this ID"));
@@ -29,7 +31,9 @@ public class PersonService {
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
-        return repository.save(entity);
+
+        PersonVO vo = DozerConverter.traslatorObject(repository.save(entity), PersonVO.class);
+        return vo;
     }
 
     public void delete(Long id) {
@@ -39,13 +43,14 @@ public class PersonService {
         repository.delete(entity);
     }
 
-    public Person findById(Long id) {
-        return repository.findById(id).orElseThrow(() ->
+    public PersonVO findById(Long id) {
+        Person entity = repository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("No records found this ID"));
+        return DozerConverter.traslatorObject(entity, PersonVO.class);
     }
 
-    public List<Person> findAll() {
-        return repository.findAll();
+    public List<PersonVO> findAll() {
+        return DozerConverter.translatorObjectList(repository.findAll(), PersonVO.class);
     }
 }
 
