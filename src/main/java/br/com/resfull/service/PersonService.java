@@ -2,6 +2,7 @@ package br.com.resfull.service;
 
 import br.com.resfull.ExceptionResponse.ResourceNotFoundException;
 import br.com.resfull.converter.DozerConverter;
+import br.com.resfull.converter.custom.PersonConverter;
 import br.com.resfull.data.model.Person;
 import br.com.resfull.data.vo.PersonVO;
 import br.com.resfull.data.vo.v2.PersonVOV2;
@@ -17,14 +18,17 @@ public class PersonService {
     @Autowired
     PersonRepository repository;
 
+    @Autowired
+    PersonConverter translator;
+
     public PersonVO create(PersonVO person) {
         Person entity = DozerConverter.traslatorObject(person, Person.class);
         PersonVO vo = DozerConverter.traslatorObject(repository.save(entity), PersonVO.class);
          return vo;
     }
     public PersonVOV2 createv2(PersonVOV2 person) {
-        Person entity = DozerConverter.traslatorObject(person, Person.class);
-        PersonVOV2 vo = DozerConverter.traslatorObject(repository.save(entity), PersonVOV2.class);
+        Person entity =  translator.convertVOToEntity(person);
+        PersonVOV2 vo = translator.convertEntityToVO(repository.save(entity));
         return vo;
     }
 
