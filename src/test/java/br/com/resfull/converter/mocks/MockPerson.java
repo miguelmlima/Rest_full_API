@@ -1,6 +1,7 @@
 package br.com.resfull.converter.mocks;
 
 import br.com.resfull.data.model.Person;
+import br.com.resfull.data.vo.v1.PersonVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ public class MockPerson {
         return  mockEntity(0);
     }
 
-    public br.com.resfull.data.vo.PersonVO mockVO() {
+    public PersonVO mockVO() {
         return mockVO(0);
     }
 
@@ -23,8 +24,8 @@ public class MockPerson {
         return people;
     }
 
-    public List<br.com.resfull.data.vo.PersonVO> mockVOList() {
-        List<br.com.resfull.data.vo.PersonVO> personVOS = new ArrayList<>();
+    public List<PersonVO> mockVOList() {
+        List<PersonVO> personVOS = new ArrayList<>();
         for (int i=0; i <14; i++) {
             personVOS.add(mockVO(i));
         }
@@ -41,8 +42,8 @@ public class MockPerson {
         return person;
     }
 
-    private br.com.resfull.data.vo.PersonVO mockVO(Integer number) {
-        br.com.resfull.data.vo.PersonVO personVO = new br.com.resfull.data.vo.PersonVO();
+    private PersonVO mockVO(Integer number) {
+        PersonVO personVO = new PersonVO();
         personVO.setFirstName("First name" + number);
         personVO.setLastName("Last name" + number);
         personVO.setGender(((number % 2) == 0) ? "Male" : "Female");

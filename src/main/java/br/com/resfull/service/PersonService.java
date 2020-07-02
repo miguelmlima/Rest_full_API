@@ -4,7 +4,7 @@ import br.com.resfull.ExceptionResponse.ResourceNotFoundException;
 import br.com.resfull.converter.DozerConverter;
 import br.com.resfull.converter.custom.PersonConverter;
 import br.com.resfull.data.model.Person;
-import br.com.resfull.data.vo.PersonVO;
+import br.com.resfull.data.vo.v1.PersonVO;
 import br.com.resfull.data.vo.v2.PersonVOV2;
 import br.com.resfull.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,7 @@ package br.com.resfull.converter;
 
 import br.com.resfull.converter.mocks.MockPerson;
 import br.com.resfull.data.model.Person;
-import br.com.resfull.data.vo.PersonVO;
+import br.com.resfull.data.vo.v1.PersonVO;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
