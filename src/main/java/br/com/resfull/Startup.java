@@ -3,12 +3,15 @@ package br.com.resfull;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-public class ResfullApplication {
+@EnableAutoConfiguration
+@ComponentScan
+public class Startup {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ResfullApplication.class, args);
+		SpringApplication.run(Startup.class, args);
 	}
 
 }
