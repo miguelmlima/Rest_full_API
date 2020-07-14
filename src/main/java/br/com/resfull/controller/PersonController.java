@@ -4,10 +4,14 @@ package br.com.resfull.controller;
 import br.com.resfull.data.vo.v1.PersonVO;
 import br.com.resfull.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 
 @RestController
@@ -19,7 +23,9 @@ public class PersonController {
 
     @GetMapping(value = "/{id}",produces = {"application/json", "application/xml", "application/x-yaml"})
     public PersonVO findById(@PathVariable("id") Long id) {
-        return service.findById(id);
+        PersonVO personVO = service.findById(id);
+        personVO.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+        return personVO;
     }
     @GetMapping(produces = {"application/json", "application/xml", "application/x-yaml"})
     public List<PersonVO> findAll() {
