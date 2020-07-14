@@ -37,7 +37,8 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("br.com.restfull"))
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .apiInfo(metaInfo());
 
     }
 
