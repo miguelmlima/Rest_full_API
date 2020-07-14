@@ -5,7 +5,6 @@ import br.com.resfull.converter.DozerConverter;
 import br.com.resfull.converter.custom.PersonConverter;
 import br.com.resfull.data.model.Person;
 import br.com.resfull.data.vo.v1.PersonVO;
-import br.com.resfull.data.vo.v2.PersonVOV2;
 import br.com.resfull.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,14 +25,9 @@ public class PersonService {
         PersonVO vo = DozerConverter.traslatorObject(repository.save(entity), PersonVO.class);
          return vo;
     }
-    public PersonVOV2 createv2(PersonVOV2 person) {
-        Person entity =  translator.convertVOToEntity(person);
-        PersonVOV2 vo = translator.convertEntityToVO(repository.save(entity));
-        return vo;
-    }
 
     public PersonVO update(PersonVO person) {
-        Person entity = repository.findById(person.getId())
+        Person entity = repository.findById(person.getKey())
                 .orElseThrow(() ->
                         new ResourceNotFoundException("No records found this ID"));
 

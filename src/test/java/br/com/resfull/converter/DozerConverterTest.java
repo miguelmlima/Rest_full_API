@@ -22,7 +22,7 @@ public class DozerConverterTest {
     @Test
     public void translatorEntityToVOTest() {
      PersonVO output = DozerConverter.traslatorObject(inputObject.mockEntity(), PersonVO.class);
-        Assert.assertEquals(Long.valueOf(0L), output.getId());
+        Assert.assertEquals(Long.valueOf(0L), output.getKey());
         Assert.assertEquals("First name0", output.getFirstName());
         Assert.assertEquals("Last name0", output.getLastName());
         Assert.assertEquals("Address0", output.getAddress());
@@ -34,7 +34,7 @@ public class DozerConverterTest {
         List<PersonVO> outputList = DozerConverter.translatorObjectList(inputObject.mockEntityList(), PersonVO.class);
         PersonVO outputZero = outputList.get(0);
 
-        Assert.assertEquals(Long.valueOf(0L), outputZero.getId());
+        Assert.assertEquals(Long.valueOf(0L), outputZero.getKey());
         Assert.assertEquals("First name0", outputZero.getFirstName());
         Assert.assertEquals("Last name0", outputZero.getLastName());
         Assert.assertEquals("Address0", outputZero.getAddress());
@@ -42,7 +42,7 @@ public class DozerConverterTest {
 
         PersonVO outputSix = outputList.get(6);
 
-        Assert.assertEquals(Long.valueOf(6L), outputSix.getId());
+        Assert.assertEquals(Long.valueOf(6L), outputSix.getKey());
         Assert.assertEquals("First name6", outputSix.getFirstName());
         Assert.assertEquals("Last name6", outputSix.getLastName());
         Assert.assertEquals("Address6", outputSix.getAddress());
@@ -50,7 +50,7 @@ public class DozerConverterTest {
 
         PersonVO outputSeven = outputList.get(7);
 
-        Assert.assertEquals(Long.valueOf(7L), outputSeven.getId());
+        Assert.assertEquals(Long.valueOf(7L), outputSeven.getKey());
         Assert.assertEquals("First name7", outputSeven.getFirstName());
         Assert.assertEquals("Last name7", outputSeven.getLastName());
         Assert.assertEquals("Address7", outputSeven.getAddress());

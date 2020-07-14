@@ -2,7 +2,7 @@ package br.com.resfull.converter.custom;
 
 
 import br.com.resfull.data.model.Person;
-import br.com.resfull.data.vo.v2.PersonVOV2;
+import br.com.resfull.data.vo.v1.PersonVO;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -10,20 +10,19 @@ import java.util.Date;
 @Service
 public class PersonConverter {
 
-    public PersonVOV2 convertEntityToVO(Person person) {
-        PersonVOV2 vo = new PersonVOV2();
-        vo.setId(person.getId());
+    public PersonVO convertEntityToVO(Person person) {
+        PersonVO vo = new PersonVO();
+        vo.setKey(person.getId());
         vo.setFirstName(person.getFirstName());
         vo.setLastName(person.getLastName());
-        vo.setBirthDate(new Date());
         vo.setAddress(person.getAddress());
         vo.setGender(person.getGender());
         return vo;
     }
 
-    public Person convertVOToEntity(PersonVOV2 person) {
+    public Person convertVOToEntity(PersonVO person) {
         Person entity = new Person();
-        entity.setId(person.getId());
+        entity.setId(person.getKey());
         entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
