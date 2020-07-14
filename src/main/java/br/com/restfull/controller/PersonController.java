@@ -1,8 +1,8 @@
-package br.com.resfull.controller;
+package br.com.restfull.controller;
 
 
-import br.com.resfull.data.vo.v1.PersonVO;
-import br.com.resfull.service.PersonService;
+import br.com.restfull.data.vo.v1.PersonVO;
+import br.com.restfull.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package br.com.resfull.ExceptionResponse;
+package br.com.restfull.ExceptionResponse;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

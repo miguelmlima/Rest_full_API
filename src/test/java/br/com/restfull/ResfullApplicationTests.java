@@ -1,4 +1,4 @@
-package br.com.resfull;
+package br.com.restfull;
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;

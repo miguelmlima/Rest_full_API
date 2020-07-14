@@ -1,4 +1,4 @@
-package br.com.resfull;
+package br.com.restfull;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

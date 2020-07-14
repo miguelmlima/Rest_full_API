@@ -1,11 +1,11 @@
-package br.com.resfull.service;
+package br.com.restfull.service;
 
-import br.com.resfull.ExceptionResponse.ResourceNotFoundException;
-import br.com.resfull.converter.DozerConverter;
-import br.com.resfull.converter.custom.PersonConverter;
-import br.com.resfull.data.model.Person;
-import br.com.resfull.data.vo.v1.PersonVO;
-import br.com.resfull.repository.PersonRepository;
+import br.com.restfull.ExceptionResponse.ResourceNotFoundException;
+import br.com.restfull.converter.DozerConverter;
+import br.com.restfull.converter.custom.PersonConverter;
+import br.com.restfull.data.model.Person;
+import br.com.restfull.data.vo.v1.PersonVO;
+import br.com.restfull.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

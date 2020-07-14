@@ -1,7 +1,7 @@
-package br.com.resfull.converter.mocks;
+package br.com.restfull.converter.mocks;
 
-import br.com.resfull.data.model.Person;
-import br.com.resfull.data.vo.v1.PersonVO;
+import br.com.restfull.data.model.Person;
+import br.com.restfull.data.vo.v1.PersonVO;
 
 import java.util.ArrayList;
 import java.util.List;

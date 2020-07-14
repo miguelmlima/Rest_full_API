@@ -1,4 +1,4 @@
-package br.com.resfull.data.vo.v1;
+package br.com.restfull.data.vo.v1;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

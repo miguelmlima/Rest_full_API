@@ -1,4 +1,4 @@
-package br.com.resfull.converter;
+package br.com.restfull.converter;
 
 
 import com.github.dozermapper.core.DozerBeanMapperBuilder;

@@ -1,11 +1,9 @@
-package br.com.resfull.converter.custom;
+package br.com.restfull.converter.custom;
 
 
-import br.com.resfull.data.model.Person;
-import br.com.resfull.data.vo.v1.PersonVO;
+import br.com.restfull.data.model.Person;
+import br.com.restfull.data.vo.v1.PersonVO;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 
 @Service
 public class PersonConverter {

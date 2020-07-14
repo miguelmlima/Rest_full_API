@@ -1,6 +1,6 @@
-package br.com.resfull.config;
+package br.com.restfull.config;
 
-import br.com.resfull.serialization.converter.YamlJackson2httpMessageConverter;
+import br.com.restfull.serialization.converter.YamlJackson2httpMessageConverter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
