@@ -43,8 +43,8 @@ public class SwaggerConfig {
 
     private ApiInfo metaInfo() {
         ApiInfo apiInfo = new ApiInfo(
-                "Cartões API Rest",
-                "API Rest cadastro de Cartões",
+                "Pessoa API Restfull",
+                "API Restfull de Pessoas",
                 "1.0",
                 "Terms of Service",
                 new Contact("Miguel Lima", "https://www.linkedin.com/in/miguel-moreira-lima-11813ab7/",
