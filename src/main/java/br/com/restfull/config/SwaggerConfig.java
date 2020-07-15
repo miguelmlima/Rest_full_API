@@ -44,7 +44,7 @@ public class SwaggerConfig {
 
     private ApiInfo metaInfo() {
         ApiInfo apiInfo = new ApiInfo(
-                "Pessoa API Restfull",
+                "API Restfull de Pessoas e Livros",
                 "API Restfull de Pessoas",
                 "1.0",
                 "Terms of Service",
