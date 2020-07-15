@@ -13,7 +13,7 @@ import java.util.List;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@Api(value = "Book Crud Endpoints")
+@Api(tags = "Book Crud Endpoints")
 @RestController
 @RequestMapping("/api/books/v1")
 public class BookController {
@@ -22,7 +22,7 @@ public class BookController {
     private BookService service;
 
     @GetMapping(value = "/{id}", produces = {"application/json", "application/xml", "application/x-yaml"})
-    @ApiOperation(value = "fetch book data")
+    @ApiOperation(value = "fetch book data by your ID")
     public BookVO findById(@PathVariable("id") Long id) {
         BookVO bookVO = service.findById(id);
         bookVO.add(linkTo(methodOn(BookController.class).findById(id)).withSelfRel());
@@ -51,7 +51,7 @@ public class BookController {
     }
 
     @PutMapping(produces = {"application/json", "application/xml"}, consumes = {"application/json", "application/xml", "application/x-yaml"})
-    @ApiOperation(value = "updates a book field")
+    @ApiOperation(value = "updates a book field by your ID")
     public BookVO update(@RequestBody BookVO book) {
         BookVO bookVO = service.update(book);
         bookVO.add(linkTo(methodOn(BookController.class).findById(bookVO.getKey())).withSelfRel());
@@ -59,7 +59,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "erases book's data")
+    @ApiOperation(value = "erases book's data by your ID")
     public ResponseEntity delete(@PathVariable("id") Long id) {
         service.delete(id);
         return ResponseEntity.ok().build();

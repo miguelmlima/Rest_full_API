@@ -15,7 +15,7 @@ import java.util.List;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@Api(value = "Person Crud Endpoints")
+@Api(tags = "Person Crud Endpoints")
 @RestController
 @RequestMapping("/api/person/v1")
 public class PersonController {
@@ -24,7 +24,7 @@ public class PersonController {
     private PersonService service;
 
     @GetMapping(value = "/{id}",produces = {"application/json", "application/xml", "application/x-yaml"})
-    @ApiOperation(value = "fetch person data")
+    @ApiOperation(value = "fetch person data by your ID")
     public PersonVO findById(@PathVariable("id") Long id) {
         PersonVO personVO = service.findById(id);
         personVO.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
@@ -50,14 +50,14 @@ public class PersonController {
         return personVO;
     }
     @PutMapping(produces = {"application/json", "application/xml"}, consumes = {"application/json", "application/xml", "application/x-yaml"})
-    @ApiOperation(value = "updates a person field")
+    @ApiOperation(value = "updates a person field by your ID")
     public PersonVO update(@RequestBody PersonVO person) {
         PersonVO personVO = service.update(person);
         personVO.add(linkTo(methodOn(PersonController.class).findById(personVO.getKey())).withSelfRel());
         return personVO;
     }
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "erases person's data")
+    @ApiOperation(value = "erases person's data by your ID")
     public ResponseEntity delete(@PathVariable("id") Long id) {
         service.delete(id);
         return ResponseEntity.ok().build();
