@@ -1,4 +1,4 @@
-package br.com.restfull.security;
+package br.com.restfull.data.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,15 +7,15 @@ public class AccountCredentialsDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String userName;
+    private String username;
     private String password;
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -31,12 +31,12 @@ public class AccountCredentialsDTO implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountCredentialsDTO that = (AccountCredentialsDTO) o;
-        return Objects.equals(userName, that.userName) &&
+        return Objects.equals(username, that.username) &&
                 Objects.equals(password, that.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName, password);
+        return Objects.hash(username, password);
     }
 }
