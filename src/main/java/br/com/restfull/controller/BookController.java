@@ -1,6 +1,6 @@
 package br.com.restfull.controller;
 
-import br.com.restfull.data.vo.v1.BookVO;
+import br.com.restfull.data.dto.BookDTO;
 import br.com.restfull.service.BookService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,16 +23,16 @@ public class BookController {
 
     @GetMapping(value = "/{id}", produces = {"application/json", "application/xml", "application/x-yaml"})
     @ApiOperation(value = "fetch book data by your ID")
-    public BookVO findById(@PathVariable("id") Long id) {
-        BookVO bookVO = service.findById(id);
-        bookVO.add(linkTo(methodOn(BookController.class).findById(id)).withSelfRel());
-        return bookVO;
+    public BookDTO findById(@PathVariable("id") Long id) {
+        BookDTO bookDTO = service.findById(id);
+        bookDTO.add(linkTo(methodOn(BookController.class).findById(id)).withSelfRel());
+        return bookDTO;
     }
 
     @GetMapping(produces = {"application/json", "application/xml", "application/x-yaml"})
     @ApiOperation(value = "returns all books")
-    public List<BookVO> findAll() {
-        List<BookVO> books = service.findAll();
+    public List<BookDTO> findAll() {
+        List<BookDTO> books = service.findAll();
         books
                 .stream()
                 .forEach(p -> p.add(
@@ -44,18 +44,18 @@ public class BookController {
 
     @PostMapping(produces = {"application/json", "application/xml"}, consumes = {"application/json", "application/xml", "application/x-yaml"})
     @ApiOperation(value = "register a book")
-    public BookVO create(@RequestBody BookVO book) {
-        BookVO bookVO = service.create(book);
-        bookVO.add(linkTo(methodOn(BookController.class).findById(bookVO.getKey())).withSelfRel());
-        return bookVO;
+    public BookDTO create(@RequestBody BookDTO book) {
+        BookDTO bookDTO = service.create(book);
+        bookDTO.add(linkTo(methodOn(BookController.class).findById(bookDTO.getKey())).withSelfRel());
+        return bookDTO;
     }
 
     @PutMapping(produces = {"application/json", "application/xml"}, consumes = {"application/json", "application/xml", "application/x-yaml"})
     @ApiOperation(value = "updates a book field by your ID")
-    public BookVO update(@RequestBody BookVO book) {
-        BookVO bookVO = service.update(book);
-        bookVO.add(linkTo(methodOn(BookController.class).findById(bookVO.getKey())).withSelfRel());
-        return bookVO;
+    public BookDTO update(@RequestBody BookDTO book) {
+        BookDTO bookDTO = service.update(book);
+        bookDTO.add(linkTo(methodOn(BookController.class).findById(bookDTO.getKey())).withSelfRel());
+        return bookDTO;
     }
 
     @DeleteMapping("/{id}")

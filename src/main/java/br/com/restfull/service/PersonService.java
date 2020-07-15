@@ -4,7 +4,7 @@ import br.com.restfull.ExceptionResponse.ResourceNotFoundException;
 import br.com.restfull.converter.DozerConverter;
 import br.com.restfull.converter.custom.PersonConverter;
 import br.com.restfull.data.model.Person;
-import br.com.restfull.data.vo.v1.PersonVO;
+import br.com.restfull.data.dto.PersonDTO;
 import br.com.restfull.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,13 +20,13 @@ public class PersonService {
     @Autowired
     PersonConverter translator;
 
-    public PersonVO create(PersonVO person) {
+    public PersonDTO create(PersonDTO person) {
         Person entity = DozerConverter.traslatorObject(person, Person.class);
-        PersonVO vo = DozerConverter.traslatorObject(repository.save(entity), PersonVO.class);
+        PersonDTO vo = DozerConverter.traslatorObject(repository.save(entity), PersonDTO.class);
          return vo;
     }
 
-    public PersonVO update(PersonVO person) {
+    public PersonDTO update(PersonDTO person) {
         Person entity = repository.findById(person.getKey())
                 .orElseThrow(() ->
                         new ResourceNotFoundException("No records found this ID"));
@@ -36,7 +36,7 @@ public class PersonService {
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        PersonVO vo = DozerConverter.traslatorObject(repository.save(entity), PersonVO.class);
+        PersonDTO vo = DozerConverter.traslatorObject(repository.save(entity), PersonDTO.class);
         return vo;
     }
 
@@ -47,14 +47,14 @@ public class PersonService {
         repository.delete(entity);
     }
 
-    public PersonVO findById(Long id) {
+    public PersonDTO findById(Long id) {
         Person entity = repository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("No records found this ID"));
-        return DozerConverter.traslatorObject(entity, PersonVO.class);
+        return DozerConverter.traslatorObject(entity, PersonDTO.class);
     }
 
-    public List<PersonVO> findAll() {
-        return DozerConverter.translatorObjectList(repository.findAll(), PersonVO.class);
+    public List<PersonDTO> findAll() {
+        return DozerConverter.translatorObjectList(repository.findAll(), PersonDTO.class);
     }
 }
 

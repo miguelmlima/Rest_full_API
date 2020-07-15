@@ -1,4 +1,4 @@
-package br.com.restfull.data.vo.v1;
+package br.com.restfull.data.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,12 +7,11 @@ import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @JsonPropertyOrder(value = {"key", "author", "launch_date","title", "price"})
-public class BookVO extends RepresentationModel implements Serializable {
+public class BookDTO extends RepresentationModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,7 +28,7 @@ public class BookVO extends RepresentationModel implements Serializable {
 
     private String title;
 
-   public BookVO() {
+   public BookDTO() {
        }
 
     public Long getKey() {
@@ -77,12 +76,12 @@ public class BookVO extends RepresentationModel implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        BookVO bookVO = (BookVO) o;
-        return Objects.equals(key, bookVO.key) &&
-                Objects.equals(author, bookVO.author) &&
-                Objects.equals(launchDate, bookVO.launchDate) &&
-                Objects.equals(price, bookVO.price) &&
-                Objects.equals(title, bookVO.title);
+        BookDTO bookDTO = (BookDTO) o;
+        return Objects.equals(key, bookDTO.key) &&
+                Objects.equals(author, bookDTO.author) &&
+                Objects.equals(launchDate, bookDTO.launchDate) &&
+                Objects.equals(price, bookDTO.price) &&
+                Objects.equals(title, bookDTO.title);
     }
 
     @Override

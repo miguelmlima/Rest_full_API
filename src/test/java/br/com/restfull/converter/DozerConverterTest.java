@@ -2,7 +2,7 @@ package br.com.restfull.converter;
 
 import br.com.restfull.converter.mocks.MockPerson;
 import br.com.restfull.data.model.Person;
-import br.com.restfull.data.vo.v1.PersonVO;
+import br.com.restfull.data.dto.PersonDTO;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class DozerConverterTest {
 
     @Test
     public void translatorEntityToVOTest() {
-     PersonVO output = DozerConverter.traslatorObject(inputObject.mockEntity(), PersonVO.class);
+     PersonDTO output = DozerConverter.traslatorObject(inputObject.mockEntity(), PersonDTO.class);
         Assert.assertEquals(Long.valueOf(0L), output.getKey());
         Assert.assertEquals("First name0", output.getFirstName());
         Assert.assertEquals("Last name0", output.getLastName());
@@ -31,8 +31,8 @@ public class DozerConverterTest {
 
     @Test
     public void translatorEntityListToVOListTest() {
-        List<PersonVO> outputList = DozerConverter.translatorObjectList(inputObject.mockEntityList(), PersonVO.class);
-        PersonVO outputZero = outputList.get(0);
+        List<PersonDTO> outputList = DozerConverter.translatorObjectList(inputObject.mockEntityList(), PersonDTO.class);
+        PersonDTO outputZero = outputList.get(0);
 
         Assert.assertEquals(Long.valueOf(0L), outputZero.getKey());
         Assert.assertEquals("First name0", outputZero.getFirstName());
@@ -40,7 +40,7 @@ public class DozerConverterTest {
         Assert.assertEquals("Address0", outputZero.getAddress());
         Assert.assertEquals("Male", outputZero.getGender());
 
-        PersonVO outputSix = outputList.get(6);
+        PersonDTO outputSix = outputList.get(6);
 
         Assert.assertEquals(Long.valueOf(6L), outputSix.getKey());
         Assert.assertEquals("First name6", outputSix.getFirstName());
@@ -48,7 +48,7 @@ public class DozerConverterTest {
         Assert.assertEquals("Address6", outputSix.getAddress());
         Assert.assertEquals("Male", outputSix.getGender());
 
-        PersonVO outputSeven = outputList.get(7);
+        PersonDTO outputSeven = outputList.get(7);
 
         Assert.assertEquals(Long.valueOf(7L), outputSeven.getKey());
         Assert.assertEquals("First name7", outputSeven.getFirstName());

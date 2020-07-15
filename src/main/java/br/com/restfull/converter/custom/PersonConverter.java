@@ -2,14 +2,14 @@ package br.com.restfull.converter.custom;
 
 
 import br.com.restfull.data.model.Person;
-import br.com.restfull.data.vo.v1.PersonVO;
+import br.com.restfull.data.dto.PersonDTO;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PersonConverter {
 
-    public PersonVO convertEntityToVO(Person person) {
-        PersonVO vo = new PersonVO();
+    public PersonDTO convertEntityToVO(Person person) {
+        PersonDTO vo = new PersonDTO();
         vo.setKey(person.getId());
         vo.setFirstName(person.getFirstName());
         vo.setLastName(person.getLastName());
@@ -18,7 +18,7 @@ public class PersonConverter {
         return vo;
     }
 
-    public Person convertVOToEntity(PersonVO person) {
+    public Person convertVOToEntity(PersonDTO person) {
         Person entity = new Person();
         entity.setId(person.getKey());
         entity.setFirstName(person.getFirstName());

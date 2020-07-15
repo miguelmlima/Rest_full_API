@@ -1,14 +1,14 @@
 package br.com.restfull.converter.custom;
 
 import br.com.restfull.data.model.Book;
-import br.com.restfull.data.vo.v1.BookVO;
+import br.com.restfull.data.dto.BookDTO;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BookConverter {
 
-    public BookVO convertEntityToVO(Book book) {
-        BookVO vo = new BookVO();
+    public BookDTO convertEntityToVO(Book book) {
+        BookDTO vo = new BookDTO();
         vo.setKey(book.getId());
         vo.setAuthor(book.getAuthor());
         vo.setLaunchDate(book.getLaunchDate());
@@ -17,7 +17,7 @@ public class BookConverter {
         return vo;
     }
 
-    public Book convertVOToEntity(BookVO book) {
+    public Book convertVOToEntity(BookDTO book) {
         Book entity = new Book();
         entity.setId(book.getKey());
         entity.setAuthor(book.getAuthor());

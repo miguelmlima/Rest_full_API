@@ -1,4 +1,4 @@
-package br.com.restfull.data.vo.v1;
+package br.com.restfull.data.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @JsonPropertyOrder(value = {"key","firstName","lastName","address","gender"})
-public class PersonVO extends RepresentationModel implements Serializable {
+public class PersonDTO extends RepresentationModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class PersonVO extends RepresentationModel implements Serializable {
     @JsonIgnore
     private  String gender;
 
-    public PersonVO() {
+    public PersonDTO() {
     }
 
     public Long getKey() {
@@ -75,12 +75,12 @@ public class PersonVO extends RepresentationModel implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PersonVO personVO = (PersonVO) o;
-        return Objects.equals(key, personVO.key) &&
-                Objects.equals(firstName, personVO.firstName) &&
-                Objects.equals(lastName, personVO.lastName) &&
-                Objects.equals(address, personVO.address) &&
-                Objects.equals(gender, personVO.gender);
+        PersonDTO personDTO = (PersonDTO) o;
+        return Objects.equals(key, personDTO.key) &&
+                Objects.equals(firstName, personDTO.firstName) &&
+                Objects.equals(lastName, personDTO.lastName) &&
+                Objects.equals(address, personDTO.address) &&
+                Objects.equals(gender, personDTO.gender);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package br.com.restfull.controller;
 
 
-import br.com.restfull.data.vo.v1.PersonVO;
+import br.com.restfull.data.dto.PersonDTO;
 import br.com.restfull.service.PersonService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,15 +25,15 @@ public class PersonController {
 
     @GetMapping(value = "/{id}",produces = {"application/json", "application/xml", "application/x-yaml"})
     @ApiOperation(value = "fetch person data by your ID")
-    public PersonVO findById(@PathVariable("id") Long id) {
-        PersonVO personVO = service.findById(id);
-        personVO.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
-        return personVO;
+    public PersonDTO findById(@PathVariable("id") Long id) {
+        PersonDTO personDTO = service.findById(id);
+        personDTO.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+        return personDTO;
     }
     @GetMapping(produces = {"application/json", "application/xml", "application/x-yaml"})
     @ApiOperation(value = "returns everyone's data")
-    public List<PersonVO> findAll() {
-        List<PersonVO> persons = service.findAll();
+    public List<PersonDTO> findAll() {
+        List<PersonDTO> persons = service.findAll();
         persons
              .stream()
              .forEach(p -> p.add(
@@ -44,17 +44,17 @@ public class PersonController {
     }
     @PostMapping(produces = {"application/json", "application/xml"}, consumes = {"application/json", "application/xml", "application/x-yaml"})
     @ApiOperation(value = "register a person")
-    public PersonVO create(@RequestBody PersonVO person) {
-        PersonVO personVO = service.create(person);
-        personVO.add(linkTo(methodOn(PersonController.class).findById(personVO.getKey())).withSelfRel());
-        return personVO;
+    public PersonDTO create(@RequestBody PersonDTO person) {
+        PersonDTO personDTO = service.create(person);
+        personDTO.add(linkTo(methodOn(PersonController.class).findById(personDTO.getKey())).withSelfRel());
+        return personDTO;
     }
     @PutMapping(produces = {"application/json", "application/xml"}, consumes = {"application/json", "application/xml", "application/x-yaml"})
     @ApiOperation(value = "updates a person field by your ID")
-    public PersonVO update(@RequestBody PersonVO person) {
-        PersonVO personVO = service.update(person);
-        personVO.add(linkTo(methodOn(PersonController.class).findById(personVO.getKey())).withSelfRel());
-        return personVO;
+    public PersonDTO update(@RequestBody PersonDTO person) {
+        PersonDTO personDTO = service.update(person);
+        personDTO.add(linkTo(methodOn(PersonController.class).findById(personDTO.getKey())).withSelfRel());
+        return personDTO;
     }
     @DeleteMapping("/{id}")
     @ApiOperation(value = "erases person's data by your ID")

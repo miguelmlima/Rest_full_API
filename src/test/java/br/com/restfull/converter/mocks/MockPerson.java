@@ -1,7 +1,7 @@
 package br.com.restfull.converter.mocks;
 
 import br.com.restfull.data.model.Person;
-import br.com.restfull.data.vo.v1.PersonVO;
+import br.com.restfull.data.dto.PersonDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class MockPerson {
         return  mockEntity(0);
     }
 
-    public PersonVO mockVO() {
+    public PersonDTO mockVO() {
         return mockVO(0);
     }
 
@@ -24,12 +24,12 @@ public class MockPerson {
         return people;
     }
 
-    public List<PersonVO> mockVOList() {
-        List<PersonVO> personVOS = new ArrayList<>();
+    public List<PersonDTO> mockVOList() {
+        List<PersonDTO> personDTOS = new ArrayList<>();
         for (int i=0; i <14; i++) {
-            personVOS.add(mockVO(i));
+            personDTOS.add(mockVO(i));
         }
-        return personVOS;
+        return personDTOS;
     }
 
     private Person mockEntity(Integer number) {
@@ -42,13 +42,13 @@ public class MockPerson {
         return person;
     }
 
-    private PersonVO mockVO(Integer number) {
-        PersonVO personVO = new PersonVO();
-        personVO.setFirstName("First name" + number);
-        personVO.setLastName("Last name" + number);
-        personVO.setGender(((number % 2) == 0) ? "Male" : "Female");
-        personVO.setAddress("Address" + number);
-        personVO.setKey(number.longValue());
-        return personVO;
+    private PersonDTO mockVO(Integer number) {
+        PersonDTO personDTO = new PersonDTO();
+        personDTO.setFirstName("First name" + number);
+        personDTO.setLastName("Last name" + number);
+        personDTO.setGender(((number % 2) == 0) ? "Male" : "Female");
+        personDTO.setAddress("Address" + number);
+        personDTO.setKey(number.longValue());
+        return personDTO;
     }
 }
