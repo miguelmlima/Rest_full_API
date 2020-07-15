@@ -18,6 +18,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Configuration
@@ -50,8 +52,7 @@ public class SwaggerConfig {
                 "Terms of Service",
                 new Contact("Miguel Lima", "https://www.linkedin.com/in/miguel-moreira-lima-11813ab7/",
                         "miguelmoreiralima@outlook.com"),
-                "Apache License Version 2.0",
-                "https://www.apache.org/license.html", new ArrayList<VendorExtension>()
+                "License of API", "License of URL", Collections.emptyList()
         );
         return apiInfo;
     }

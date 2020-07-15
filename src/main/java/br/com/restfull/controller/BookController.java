@@ -13,7 +13,7 @@ import java.util.List;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@Api(tags = "Book Crud Endpoints")
+@Api(value = "Book Crud Endpoints")
 @RestController
 @RequestMapping("/api/books/v1")
 public class BookController {

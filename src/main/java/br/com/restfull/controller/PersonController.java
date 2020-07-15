@@ -15,7 +15,7 @@ import java.util.List;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@Api(tags = "Person Crud Endpoints")
+@Api(value = "Person Crud Endpoints")
 @RestController
 @RequestMapping("/api/person/v1")
 public class PersonController {
