@@ -1,6 +1,6 @@
 package br.com.restfull.service;
 
-import br.com.restfull.ExceptionResponse.ResourceNotFoundException;
+import br.com.restfull.exception.ResourceNotFoundException;
 import br.com.restfull.converter.DozerConverter;
 import br.com.restfull.converter.custom.BookConverter;
 import br.com.restfull.data.model.Book;
