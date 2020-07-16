@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonConverter {
 
-    public PersonDTO convertEntityToVO(Person person) {
+    public PersonDTO convertEntityToDTO(Person person) {
         PersonDTO vo = new PersonDTO();
         vo.setKey(person.getId());
         vo.setFirstName(person.getFirstName());
@@ -18,7 +18,7 @@ public class PersonConverter {
         return vo;
     }
 
-    public Person convertVOToEntity(PersonDTO person) {
+    public Person convertDTOToEntity(PersonDTO person) {
         Person entity = new Person();
         entity.setId(person.getKey());
         entity.setFirstName(person.getFirstName());
