@@ -27,6 +27,9 @@ public class PersonController {
     @Autowired
     private PersonService service;
 
+    @Autowired
+    private PagedResourcesAssembler<PersonDTO> assembler;
+
     @GetMapping(value = "/{id}",produces = {"application/json", "application/xml", "application/x-yaml"})
     @ApiOperation(value = "fetch person data by your ID")
     public PersonDTO findById(@PathVariable("id") Long id) {
@@ -36,11 +39,10 @@ public class PersonController {
     }
     @GetMapping(produces = {"application/json", "application/xml", "application/x-yaml"})
     @ApiOperation(value = "returns everyone's data")
-    public ResponseEntity<PagedModel<PersonDTO>> findAll(
+    public ResponseEntity<?> findAll(
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "limit", defaultValue = "12") int limit,
-            @RequestParam(value = "direction", defaultValue = "asc") String direction,
-            PagedResourcesAssembler assembler) {
+            @RequestParam(value = "direction", defaultValue = "asc") String direction) {
 
         Sort.Direction sortDirection = "desc".equalsIgnoreCase(direction) ? Sort.Direction.DESC : Sort.Direction.ASC;
 
@@ -53,16 +55,16 @@ public class PersonController {
                       linkTo(methodOn(PersonController.class).findById(p.getKey())).withSelfRel()
                    )
                 );
-        return new ResponseEntity<>(assembler.toModel(persons), HttpStatus.OK);
+        PagedModel<?> model = assembler.toModel(persons);
+        return new ResponseEntity<>(model, HttpStatus.OK);
     }
     @GetMapping(value = "/findPersonByName/{firstName}",produces = {"application/json", "application/xml", "application/x-yaml"})
     @ApiOperation(value = "returns everyone's data")
-    public ResponseEntity<PagedModel<PersonDTO>> findPersonByName(
+    public ResponseEntity<?> findPersonByName(
             @PathVariable("firstName") String firstName,
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "limit", defaultValue = "12") int limit,
-            @RequestParam(value = "direction", defaultValue = "asc") String direction,
-            PagedResourcesAssembler assembler) {
+            @RequestParam(value = "direction", defaultValue = "asc") String direction) {
 
         Sort.Direction sortDirection = "desc".equalsIgnoreCase(direction) ? Sort.Direction.DESC : Sort.Direction.ASC;
 
@@ -75,7 +77,8 @@ public class PersonController {
                         linkTo(methodOn(PersonController.class).findById(p.getKey())).withSelfRel()
                         )
                 );
-        return new ResponseEntity<>(assembler.toModel(persons), HttpStatus.OK);
+        PagedModel<?> model = assembler.toModel(persons);
+        return new ResponseEntity<>(model, HttpStatus.OK);
     }
 
     @PostMapping(produces = {"application/json", "application/xml"}, consumes = {"application/json", "application/xml", "application/x-yaml"})

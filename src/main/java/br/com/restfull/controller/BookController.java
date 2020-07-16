@@ -26,6 +26,9 @@ public class BookController {
     @Autowired
     private BookService service;
 
+    @Autowired
+    private PagedResourcesAssembler<BookDTO> assembler;
+
     @GetMapping(value = "/{id}", produces = {"application/json", "application/xml", "application/x-yaml"})
     @ApiOperation(value = "fetch book data by your ID")
     public BookDTO findById(@PathVariable("id") Long id) {
@@ -36,11 +39,10 @@ public class BookController {
 
     @GetMapping(produces = {"application/json", "application/xml", "application/x-yaml"})
     @ApiOperation(value = "returns all books")
-    public ResponseEntity<PagedModel<BookDTO>> findAll(
+    public ResponseEntity<?> findAll(
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "limit", defaultValue = "12") int limit,
-            @RequestParam(value = "direction", defaultValue = "asc") String direction,
-            PagedResourcesAssembler assembler) {
+            @RequestParam(value = "direction", defaultValue = "asc") String direction) {
 
         Sort.Direction sortDirection = "desc".equalsIgnoreCase(direction) ? Sort.Direction.DESC : Sort.Direction.ASC;
 
@@ -54,7 +56,30 @@ public class BookController {
                         linkTo(methodOn(BookController.class).findById(p.getKey())).withSelfRel()
                         )
                 );
-        return new ResponseEntity<>(assembler.toModel(books), HttpStatus.OK);
+        PagedModel<?> model = assembler.toModel(books);
+        return new ResponseEntity<>(model, HttpStatus.OK);
+    }
+    @GetMapping(value = "/findAuthorByName/{author}",produces = {"application/json", "application/xml", "application/x-yaml"})
+    @ApiOperation(value = "Find all book with token name")
+    public ResponseEntity<?> findAuthorByName(
+            @PathVariable("author") String author,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "limit", defaultValue = "12") int limit,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction) {
+
+        Sort.Direction sortDirection = "desc".equalsIgnoreCase(direction) ? Sort.Direction.DESC : Sort.Direction.ASC;
+
+        Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection,"author"));
+
+        Page<BookDTO> books = service.findAuthorByName(author, pageable);
+        books
+                .stream()
+                .forEach(p -> p.add(
+                        linkTo(methodOn(PersonController.class).findById(p.getKey())).withSelfRel()
+                        )
+                );
+        PagedModel<?> model = assembler.toModel(books);
+        return new ResponseEntity<>(model, HttpStatus.OK);
     }
 
     @PostMapping(produces = {"application/json", "application/xml"}, consumes = {"application/json", "application/xml", "application/x-yaml"})

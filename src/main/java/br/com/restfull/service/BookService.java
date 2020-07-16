@@ -52,6 +52,11 @@ public class BookService {
         return DozerConverter.traslatorObject(entity, BookDTO.class);
     }
 
+    public Page<BookDTO> findAuthorByName(String author, Pageable pageable) {
+        Page<Book> page = repository.findAuthorByName(author, pageable);
+        return page.map(this::convertToBookDTO);
+    }
+
     public Page<BookDTO> findAll(Pageable pageable) {
         Page<Book> page = repository.findAll(pageable);
         return page.map(this::convertToBookDTO);
