@@ -47,11 +47,15 @@ public class PersonService {
                         new ResourceNotFoundException("No records found this ID"));
         repository.delete(entity);
     }
-
     public PersonDTO findById(Long id) {
         Person entity = repository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("No records found this ID"));
         return DozerConverter.traslatorObject(entity, PersonDTO.class);
+    }
+
+    public Page<PersonDTO> findPersonByName(String firstName, Pageable pageable) {
+        Page<Person> page = repository.findPersonByName(firstName, pageable);
+        return page.map(this::convertToPersonDTO);
     }
 
     @Transactional
