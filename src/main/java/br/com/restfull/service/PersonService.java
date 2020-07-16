@@ -8,6 +8,7 @@ import br.com.restfull.data.dto.PersonDTO;
 import br.com.restfull.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -48,6 +49,14 @@ public class PersonService {
     }
 
     public PersonDTO findById(Long id) {
+        Person entity = repository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("No records found this ID"));
+        return DozerConverter.traslatorObject(entity, PersonDTO.class);
+    }
+
+    @Transactional
+    public PersonDTO disablePerson(Long id) {
+        repository.disablePerson(id);
         Person entity = repository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("No records found this ID"));
         return DozerConverter.traslatorObject(entity, PersonDTO.class);
