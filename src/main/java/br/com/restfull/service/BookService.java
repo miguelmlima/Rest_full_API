@@ -1,15 +1,15 @@
 package br.com.restfull.service;
 
-import br.com.restfull.exception.ResourceNotFoundException;
 import br.com.restfull.converter.DozerConverter;
 import br.com.restfull.converter.custom.BookConverter;
-import br.com.restfull.data.model.Book;
 import br.com.restfull.data.dto.BookDTO;
+import br.com.restfull.data.model.Book;
+import br.com.restfull.exception.ResourceNotFoundException;
 import br.com.restfull.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class BookService {
@@ -52,7 +52,12 @@ public class BookService {
         return DozerConverter.traslatorObject(entity, BookDTO.class);
     }
 
-    public List<BookDTO> findAll() {
-        return DozerConverter.translatorObjectList(repository.findAll(), BookDTO.class);
+    public Page<BookDTO> findAll(Pageable pageable) {
+        Page<Book> page = repository.findAll(pageable);
+        return page.map(this::convertToBookDTO);
+    }
+
+    private BookDTO convertToBookDTO(Book entity) {
+        return DozerConverter.traslatorObject(entity, BookDTO.class);
     }
 }

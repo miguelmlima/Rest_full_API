@@ -1,19 +1,16 @@
 package br.com.restfull.service;
 
-import br.com.restfull.exception.ResourceNotFoundException;
 import br.com.restfull.converter.DozerConverter;
 import br.com.restfull.converter.custom.PersonConverter;
-import br.com.restfull.data.model.Person;
 import br.com.restfull.data.dto.PersonDTO;
+import br.com.restfull.data.model.Person;
+import br.com.restfull.exception.ResourceNotFoundException;
 import br.com.restfull.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.swing.text.html.parser.Entity;
-import java.util.List;
 
 @Service
 public class PersonService {
